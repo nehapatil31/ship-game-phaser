@@ -50,6 +50,46 @@ class Scene2 extends Phaser.Scene {
       repeat: 0,
       hideOnComplete: true
     });
+    this.anims.create({
+      key: "red",
+      frames: this.anims.generateFrameNumbers("power-up", {
+        start: 0,
+        end: 1
+      }),
+      frameRate: 20,
+      repeat: -1
+    });
+    this.anims.create({
+      key: "gray",
+      frames: this.anims.generateFrameNumbers("power-up", {
+        start: 2,
+        end: 3
+      }),
+      frameRate: 20,
+      repeat: -1
+    });
+
+    //add a group called powerUps
+    this.powerUps = this.physics.add.group();
+
+    var maxObjects = 4;
+    for (var i = 0; i <= maxObjects; i++) {
+      var powerUp = this.physics.add.sprite(16, 16, "power-up");
+      this.powerUps.add(powerUp);
+      powerUp.setRandomPosition(0, 0, config.width, config.height);
+      //50 50 % chance to play either red or gray animations
+      if (Math.random() > 0.5) {
+        powerUp.play("red");
+      } else {
+        powerUp.play("gray");
+      }
+
+      powerUp.setVelocity(100, 100);
+      //objects will collide with the boundaries
+      powerUp.setCollideWorldBounds(true);
+      //for bounce
+      powerUp.setBounce(1);
+    }
 
     //For ship animations
     this.ship1.play("ship1_anim");

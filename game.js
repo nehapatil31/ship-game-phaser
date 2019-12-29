@@ -1,8 +1,14 @@
 var config = {
   width: 256,
   height: 272,
-  background: 0x000000,
-  scene: [Scene1, Scene2]
+  backgroundColor: 0x000000,
+  scene: [Scene1, Scene2],
+  physics: {
+    default: "arcade",
+    arcade:{
+      debug: false
+    }
+  }
 };
 
 window.onload = function() {
