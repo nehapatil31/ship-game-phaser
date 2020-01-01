@@ -5,10 +5,14 @@ var config = {
   scene: [Scene1, Scene2],
   physics: {
     default: "arcade",
-    arcade:{
+    arcade: {
       debug: false
     }
   }
+};
+
+var gameSettings = {
+  playerSpeed: 200
 };
 
 window.onload = function() {
